@@ -1,3 +1,4 @@
+```groovy
 pipeline {
     agent any
 
@@ -13,7 +14,8 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Running tests...'
-                sh 'docker run --rm -v "$PWD":/app -w /app node:18 npm test'
+                sh 'docker build -t jenkins-docker-cicd:test .'
+                sh 'docker run --rm jenkins-docker-cicd:test npm test'
             }
         }
 
@@ -35,3 +37,4 @@ pipeline {
         }
     }
 }
+```
