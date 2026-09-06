@@ -13,7 +13,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Running tests...'
-                sh 'npm test'
+                sh 'docker run --rm -v "$PWD":/app -w /app node:18 npm test'
             }
         }
 
